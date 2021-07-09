@@ -1,26 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <style>
-            .testing {
-                background-color: yellow;
-                margin: 1rem;
-                height: 48px;
-                width:  48px;
-                border-radius: .5rem;
-        }
-    </style>
 
-
-    <div style="height: 20rem; background-color: #38df81; border-radius: 1rem; margin: 2rem;">
+    <div style="margin: 2rem; text-align: center">
 
         <h1>TEST</h1>
 
-        <div class="testing" style="display: block">block</div>
-        <div class="testing" style="display: inline">inline</div>
-        <div class="testing" style="display: none">none</div>
-        <div class="testing" style="display: inline-block">inline-block</div>
-        <div class="testing"></div>
+        <form action="/accountapps/hello_world/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-outline-dark rounded-pill px-5">
+        </form>
+
+        <h3>{{ text }}</h3>
 
     </div>
 

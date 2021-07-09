@@ -5,4 +5,10 @@ from django.shortcuts import render
 
 
 def hello_world(request):
-    return render(request, 'accountapp/hellow_world.html')
+    if request.method == "post":
+        return render(request, 'accountapp/hellow_world.html',
+                  context={'text': 'POST METHOD'})
+
+    else:
+        return render(request, 'accountapp/hellow_world.html',
+                  context={'text': 'POST METHOD'})
