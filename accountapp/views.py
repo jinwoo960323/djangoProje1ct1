@@ -1,9 +1,11 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import NewModel
 
@@ -24,11 +26,8 @@ def hello_world(request):
                   context={'data_list': data_list})
 
 
-class CreatView:
-    pass
-
-
-class AcoountCreatView(CreatView):
+class AccountCreateView(CreateView):
     model =User
     form_class = UserCreationForm
-    success_url =
+    success_url = reverse_lazy('accountapp:hellow_world')
+    template_name = 'accountapp/create.html'
