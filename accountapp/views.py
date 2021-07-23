@@ -10,7 +10,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 import accountapp
-from accountapp.models import NewModel
+from accountapp.decorators import account_ownership_required
+from accountapp.models import NewModel 
 
 
 
@@ -43,9 +44,10 @@ class AccountDetailView(DetailView):
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
+has_ownership = [login_required, account_ownership_required]
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User
     form_class = UserCreationForm
@@ -53,8 +55,9 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
