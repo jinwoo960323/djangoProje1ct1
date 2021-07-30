@@ -10,7 +10,8 @@
                     {{ target_user.nickname }}
                     {% if target_user == user %}
                         <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                        edit
+                            class="material-icon"
+                            edit
                         </a>
                     {% endif %}
                 </h2>
