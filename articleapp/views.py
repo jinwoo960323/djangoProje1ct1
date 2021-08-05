@@ -1,5 +1,7 @@
+from audioop import reverse
+
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from articleapp.models import Article
 from articleapp.templates.forms import ArticleCreationForm
@@ -14,3 +16,14 @@ class ArticleCreateView(CreateView):
     def form_valid(self, form):
         form.instance.writer = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object})
+
+class ArticleDetailView(DetailView):
+    model = Article
+    context_object_name = 'target_article'
+    template_name =  'articleapp/detail.html'
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})

@@ -9,4 +9,6 @@ urlpatterns = [
     path('list/', TemplateView.as_view(template_name='articaleapp/list.html'), name='list'),
 
     path('create/', ArticleCreateView.as_view(), name='create'),
+    path('detail/<int:pk>', ArticleCreateView.as_view(), name='detail'),
+    path('update/<int:pk>', ArticleCreateView.as_view(),)
 ]
