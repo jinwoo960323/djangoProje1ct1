@@ -9,8 +9,8 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
-import accountapp
 from accountapp.decorators import account_ownership_required
+from accountapp.forms import AccountCreationForm
 from accountapp.models import NewModel
 
 
@@ -24,10 +24,9 @@ def hello_world(request):
         model_instance.save()
 
         return HttpResponseRedirect(reverse('accountapp:hello_world'))
-
     else:
         data_list = NewModel.objects.all()
-        return render(request, 'accountapp/hellow_world.html',
+        return render(request, 'accountapp/hello_world.html',
                       context={'data_list': data_list})
 
 
@@ -51,7 +50,7 @@ has_ownership = [login_required, account_ownership_required]
 @method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
     model = User
-    form_class = UserCreationForm
+    form_class = AccountCreationForm
     context_object_name = 'target_user'
     template_name = 'accountapp/update.html'
 
@@ -64,8 +63,5 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:detail')
+    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
-
-    def get_success_url(self):
-        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})

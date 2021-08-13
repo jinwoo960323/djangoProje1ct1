@@ -3,7 +3,20 @@
     font-family: 'Pacifico', cursive;
 }
 
-.mw-500{
+.pragmatic_header_button {
+    margin-bottom: 2rem;
+}
+
+.pragmatic_footer_logo {
+    margin: 1.5rem 0;
+    font-family: 'Pacifico', cursive;
+}
+
+.pragmatic_footer_button {
+    margin-top: 1.5rem
+}
+
+.mw-500 {
     max-width: 500px;
     padding: 1rem 1.5rem;
 }
@@ -13,20 +26,48 @@
     width: 12rem;
     border-radius: 20rem;
     object-fit: cover;
-
 }
 
 .NNS_B {
-    font-family: "NanumSquareB",cursive;
+    font-family: "NanumSquareB", cursive;
 }
+
 .round_button {
     color: black;
     text-decoration: none;
     box-shadow: 0 0 3px black;
-    boder-radius: 20rem;
+    border-radius: 20rem;
     padding: 0.3rem;
 }
 
 .round_button:hover {
-    color: dimgray;
+    color: dimgrey;
+}
+
+.article_content {
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.article_image {
+    border-radius: 2rem;
+    width: 60%;
+    box-shadow: 0 0 1rem #bcbcbc;
+}
+
+.comment_box {
+    text-align: left;
+    border: solid;
+    border-color: #dfdfdf;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+
+@media screen and (max-width: 500px) {
+    html{
+        /* default font size = 16px */
+        font-size: 13px;
+    }
 }
